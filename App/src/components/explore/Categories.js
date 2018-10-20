@@ -12,9 +12,12 @@ import {
   Image,
   View,
   Text,
+  FlatList,
+  Dimensions
 } from 'react-native';
 import colors from '../../styles/colors';
 import iPhoneSize from '../../helpers/utils';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const size = iPhoneSize();
 let cardSize = 100;
@@ -27,53 +30,47 @@ if (size === 'small') {
   cardSize = 115;
 }
 
-export default class Categories extends Component {
-  get Categories() {
-    const { categories } = this.props;
-    return categories.map((category, index) => (
-      <TouchableHighlight
-        style={styles.card}
-        key={`category-item-${index}`}
-      >
-        <Image
-          source={category.photo}
-          style={styles.image}
-        />
-      </TouchableHighlight>
-    ));
-  }
+const numColumns = 2;
 
+export default class Categories extends Component {
+
+  
   render() {
+    const { categories, navigate } = this.props;
   	return (
-    <ScrollView
-      contentContainerStyle={styles.wrapper}
-      horizontal
-      showHorizontalScrollIndicator={false}
-    >
-      {this.Categories}
-    </ScrollView>
+      <FlatList contentContainerStyle={styles.wrapper}
+      data={categories}
+      renderItem={({item, index}) => (
+        <TouchableHighlight
+        key={`category-item-${index}`}
+        onPress={() => this.props.navigation.navigate('SelectType', { types: item.types })}
+        >
+          <View
+          style={styles.item}>
+            <Icon name={item.icon} color={colors.green01} size={60}/>
+            <Text>{item.name}</Text>
+          </View>
+      </TouchableHighlight>
+      )}
+      keyExtractor={item => item.name}
+      numColumns={numColumns} />
   	);
   }
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-  	flex: 1,
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: cardSize,
-    height: cardSize,
-    marginRight: cardMargin,
-    marginLeft: cardMargin,
-  },
-  image: {
+  item: {
+    alignItems: 'center',
     flex: 1,
-    width: undefined,
-    height: undefined,
+    padding: 20,
+    marginBottom: 50,
+    width: 200
   },
+  itemSelect: {
+    backgroundColor: '#DDDDDD',
+  }
 });

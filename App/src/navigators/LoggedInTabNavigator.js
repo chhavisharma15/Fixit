@@ -10,14 +10,27 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
+import {
+  View
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import colors from '../styles/colors';
+
 import ExploreContainer from '../containers/ExploreContainer';
-import InboxContainer from '../containers/InboxContainer';
 import ProfileContainer from '../containers/ProfileContainer';
 import SavedContainer from '../containers/SavedContainer';
-import TripsContainer from '../containers/TripsContainer';
 import CreateList from '../screens/CreateList';
-import colors from '../styles/colors';
+
+import SubmitIssueContainer from '../features/submitissue/SubmitIssueContainer';
+import SelectType from '../features/submitissue/screens/SelectType';
+import SelectIssue from '../features/submitissue/screens/SelectIssue';
+import SelectPrice from '../features/submitissue/screens/SelectPrice';
+import AdditionalDetails from '../features/submitissue/screens/AdditionalDetails';
+import Success from '../features/submitissue/screens/Success';
+import Loading from '../features/submitissue/screens/Loading';
+
+import problemlist from '../features/technicianside/problemlist';
+import IssueList from '../features/technicianside/screens/IssueList';
 
 const ExploreTab = createStackNavigator({
   ExploreContainer: {
@@ -44,6 +57,31 @@ ExploreTab.navigationOptions = ({ navigation }) => {
   };
 };
 
+const IssuesTab = createStackNavigator({
+  TypesContainer: {
+    screen: SubmitIssueContainer,
+    navigationOptions: {
+      title: 'Submit Issue'
+    },
+  },
+  SelectType: { screen: SelectType },
+  SelectIssue: { screen: SelectIssue },
+  SelectPrice: { screen: SelectPrice },
+  AdditionalDetails: { screen: AdditionalDetails },
+  Success: {screen: Success},
+  Loading: { screen: Loading}
+});
+
+const TechnicianTab = createStackNavigator({
+  TypesContainer: {
+    screen: problemlist,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  MapRedirect: { screen: IssueList }
+})
+
 const CustomTabBarIcon = (name, size) => {
   const icon = ({ tintColor }) => (
     <Icon
@@ -61,31 +99,24 @@ const CustomTabBarIcon = (name, size) => {
 };
 
 const LoggedInTabNavigator = createBottomTabNavigator({
-  Explore: {
-    screen: ExploreTab,
+  Issues: {
+    screen: IssuesTab,
     navigationOptions: {
-      tabBarLabel: 'EXPLORE',
-      tabBarIcon: CustomTabBarIcon('ios-search', 22),
-    },
-  },
-  Saved: {
-    screen: SavedContainer,
-    navigationOptions: {
-      tabBarLabel: 'SAVED',
-      tabBarIcon: CustomTabBarIcon('ios-heart-outline', 22),
-    },
-  },
-  Trips: {
-    screen: TripsContainer,
-    navigationOptions: {
-      tabBarLabel: 'TRIPS',
+      tabBarLabel: 'NEW ISSUE',
       tabBarIcon: CustomTabBarIcon('ios-ionic', 21),
     },
   },
-  Inbox: {
-    screen: InboxContainer,
+  Explore: {
+    screen: ExploreTab,
     navigationOptions: {
-      tabBarLabel: 'INBOX',
+      tabBarLabel: 'HISTORY',
+      tabBarIcon: CustomTabBarIcon('ios-search', 22),
+    },
+  },
+  Inbox: {
+    screen: TechnicianTab,
+    navigationOptions: {
+      tabBarLabel: 'TECHNICIAN',
       tabBarIcon: CustomTabBarIcon('ios-archive-outline', 25),
     },
   },
@@ -102,7 +133,7 @@ const LoggedInTabNavigator = createBottomTabNavigator({
       fontWeight: '600',
       marginBottom: 5,
     },
-    activeTintColor: colors.pink,
+    activeTintColor: colors.green02,
   },
   tabBarPosition: 'bottom',
 });

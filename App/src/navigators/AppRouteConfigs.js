@@ -8,7 +8,14 @@ import TurnOnNotifications from '../screens/TurnOnNotifications';
 import LoggedInTabNavigator from './LoggedInTabNavigator';
 
 const AppRouteConfigs = createStackNavigator({
-  LoggedOut: { screen: LoggedOut },
+  //LoggedOut: { screen: LoggedOut },
+  LoggedOut: {
+    screen: LoggedInTabNavigator,
+    navigationOptions: {
+      header: null,
+      gesturesEnabled: false,
+    },
+  },
   LoggedIn: {
     screen: LoggedInTabNavigator,
     navigationOptions: {
