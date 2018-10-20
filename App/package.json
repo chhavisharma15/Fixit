@@ -1,0 +1,31 @@
+{
+  "name": "empty-project-template",
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "expo": "^30.0.1",
+    "react": "16.3.1",
+    "react-native":
+      "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "apollo-cache-inmemory": "^1.2.8",
+    "apollo-client": "^2.4.0",
+    "apollo-link-http": "^1.5.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "prop-types": "^15.6.2",
+    "react-apollo": "^2.1.11",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^2.6.2",
+    "react-navigation-redux-helpers": "^2.0.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}
