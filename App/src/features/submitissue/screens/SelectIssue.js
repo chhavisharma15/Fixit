@@ -54,7 +54,7 @@ export default class SelectIssue extends Component {
         title='CONTINUE'
         style={styles.button}
         buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-        onPress={()=>this.props.navigation.navigate('Loading',{next:'SelectPrice'})}
+        onPress={()=>this.props.navigation.navigate('Loading',{next:'SelectPrice', 'text':'Optimizing prices for you...'})}
         />
       </View>
     );

@@ -7,23 +7,27 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
-  FlatList,
 } from 'react-native';
 import colors from '../../../styles/colors';
+import { Container, Content, H1, Text } from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class SelectIssues extends Component {
+  static navigationOptions = {
+    title: 'Success',
+  };
+
   render() {
     return ( 
-      <View style={styles.wrapper}>
-        <Text style={styles.heading}>
-          Your problem is being processed.
-        </Text>  
-        <Text style={styles.heading}>
-          We will Fixit!
-        </Text>
-      </View>
+      <Container>
+        <Content style={styles.wrapper}>
+          <Icon name={'bulletin-board'} color={colors.primary} size={150} style={{alignItems:'center'}}/>
+          <H1 style={{color:colors.primary}}>
+            Your request is being processed. You will be notified soon with the right match to solve your requested issue.
+          </H1>
+        </Content>
+      </Container>
     );
   }}
 
@@ -31,15 +35,8 @@ export default class SelectIssues extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: colors.white,
-    paddingTop: 30,
-  },
-  heading: {
-    fontSize: 22,
-    fontWeight: '600',
-    paddingLeft: 20,
-    paddingBottom: 20,
-    paddingTop: 50,
-    color: colors.gray04,
-  },
+    padding: 20,
+  }
 });

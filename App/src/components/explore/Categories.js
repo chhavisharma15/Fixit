@@ -6,15 +6,12 @@
 
 import React, { Component } from 'react';
 import {
-  ScrollView,
   StyleSheet,
   TouchableHighlight,
-  Image,
   View,
-  Text,
   FlatList,
-  Dimensions
 } from 'react-native';
+import { H3 } from 'native-base';
 import colors from '../../styles/colors';
 import iPhoneSize from '../../helpers/utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -39,16 +36,18 @@ export default class Categories extends Component {
     const { categories, navigate } = this.props;
   	return (
       <FlatList contentContainerStyle={styles.wrapper}
+      showsHorizontalScrollIndicator={false}
       data={categories}
       renderItem={({item, index}) => (
         <TouchableHighlight
         key={`category-item-${index}`}
+        underlayColor={colors.primary}
         onPress={() => this.props.navigation.navigate('SelectType', { types: item.types })}
         >
           <View
           style={styles.item}>
-            <Icon name={item.icon} color={colors.green01} size={60}/>
-            <Text>{item.name}</Text>
+            <Icon name={item.icon} color={colors.primary} size={60}/>
+            <H3 style={{color: colors.gray04, textAlign: 'center'}}>{item.name}</H3>
           </View>
       </TouchableHighlight>
       )}
@@ -68,9 +67,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     marginBottom: 50,
-    width: 200
-  },
-  itemSelect: {
-    backgroundColor: '#DDDDDD',
+    width: 180
   }
 });

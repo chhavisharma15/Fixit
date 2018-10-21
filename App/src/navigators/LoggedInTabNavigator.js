@@ -76,7 +76,7 @@ const TechnicianTab = createStackNavigator({
   TypesContainer: {
     screen: problemlist,
     navigationOptions: {
-      header: null,
+      title: 'Fixit Trips'
     },
   },
   MapRedirect: { screen: IssueList }
@@ -133,7 +133,7 @@ const LoggedInTabNavigator = createBottomTabNavigator({
       fontWeight: '600',
       marginBottom: 5,
     },
-    activeTintColor: colors.green02,
+    activeTintColor: colors.primary,
   },
   tabBarPosition: 'bottom',
 });

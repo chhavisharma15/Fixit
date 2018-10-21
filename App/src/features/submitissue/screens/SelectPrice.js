@@ -70,7 +70,7 @@ export default class SelectPrice extends Component {
             </Card>
           );
         }}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => 'card'+index}
       />
       </View>
     );

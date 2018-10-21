@@ -29,8 +29,8 @@ export default class Loading extends Component {
   render() {
     return (
       <View style={styles.wrapper}>
-      <Spinner style={styles.otherparty} color='green'/>
-        <Text style={styles.party}>Optimizing prices for you...</Text>
+      <Spinner style={styles.otherparty} color={colors.primary}/>
+        <Text style={styles.party}>{this.props.navigation.state.params.text}</Text>
       </View>
     );
   }

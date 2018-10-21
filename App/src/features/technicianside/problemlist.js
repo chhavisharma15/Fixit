@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FlatList, Text, StyleSheet, View } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Card } from "react-native-elements";
+import { Button, H3 } from 'native-base';
 import colors from '../../styles/colors';
 
 const data = [
@@ -29,24 +30,18 @@ const data = [
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: 50
+    paddingTop: 30,
   },
   heading: {
     fontSize: 22,
     fontWeight: '600',
     paddingLeft: 20,
     paddingBottom: 20,
-    paddingTop: 50,
     color: colors.gray04,
   }
 });
 
-
-
 export default class ProblemList extends Component {
-  static navigationOptions = {
-    title: 'Issues Assigned',
-  };
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +54,7 @@ export default class ProblemList extends Component {
     return (
       <View style={styles.wrapper}>
       <Text style={styles.heading}>
-          Issues assigned to you
+          4 Issues for Fixit Trip #FX3231
       </Text>
       <FlatList
         data={this.state.data}
@@ -77,14 +72,16 @@ export default class ProblemList extends Component {
             </Card>
           );
         }}
-        keyExtractor={(item, index) => index}
+        keyExtractor={(item, index) => ''+index}
       />
       <Button
+      block
       onPress={() => this.props.navigation.navigate('MapRedirect')}
-      title="Plan a route"
-      color="#841584"
-      accessibilityLabel="Learn more about this purple button"
-      />
+      color={colors.primary}
+      style={{width:"100%"}}
+      >
+      <H3 style={{color: colors.white}}>Show Route</H3>
+      </Button>
       </View>
     );
   }
