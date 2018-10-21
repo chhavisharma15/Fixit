@@ -47,10 +47,10 @@ class LogIn extends Component {
     super(props);
     this.state = {
       formValid: true,
-      validEmail: false,
-      emailAddress: '',
-      password: '',
-      validPassword: false,
+      validEmail: true,
+      emailAddress: 'c@c.com',
+      password: '12345',
+      validPassword: true,
       loadingVisible: false,
     };
 
@@ -70,7 +70,7 @@ class LogIn extends Component {
       const { emailAddress, password } = this.state;
       if (logIn(emailAddress, password)) {
         this.setState({ formValid: true, loadingVisible: false });
-        navigate('TurnOnNotifications');
+        navigate('LoggedIn');
       } else {
         this.setState({ formValid: false, loadingVisible: false });
       }
