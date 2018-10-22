@@ -1,10 +1,7 @@
-import {
-  createStackNavigator,
-} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import LoggedOut from '../screens/LoggedOut';
 import LogIn from '../screens/LogIn';
 import ForgotPassword from '../screens/ForgotPassword';
-import TurnOnNotifications from '../screens/TurnOnNotifications';
 import LoggedInTabNavigator from './LoggedInTabNavigator';
 
 const AppRouteConfigs = createStackNavigator({
@@ -13,12 +10,11 @@ const AppRouteConfigs = createStackNavigator({
     screen: LoggedInTabNavigator,
     navigationOptions: {
       header: null,
-      gesturesEnabled: false,
-    },
+      gesturesEnabled: false
+    }
   },
   LogIn: { screen: LogIn },
-  ForgotPassword: { screen: ForgotPassword },
-  TurnOnNotifications: { screen: TurnOnNotifications },
+  ForgotPassword: { screen: ForgotPassword }
 });
 
 export default AppRouteConfigs;

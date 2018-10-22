@@ -8,18 +8,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   createBottomTabNavigator,
-  createStackNavigator,
+  createStackNavigator
 } from 'react-navigation';
-import {
-  View
-} from 'react-native';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../styles/colors';
-
-import ExploreContainer from '../containers/ExploreContainer';
-import ProfileContainer from '../containers/ProfileContainer';
-import SavedContainer from '../containers/SavedContainer';
-import CreateList from '../screens/CreateList';
 
 import SubmitIssueContainer from '../features/submitissue/SubmitIssueContainer';
 import SelectType from '../features/submitissue/screens/SelectType';
@@ -32,44 +25,19 @@ import Loading from '../features/submitissue/screens/Loading';
 import problemlist from '../features/technicianside/problemlist';
 import IssueList from '../features/technicianside/screens/IssueList';
 
-const ExploreTab = createStackNavigator({
-  ExploreContainer: {
-    screen: ExploreContainer,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  CreateList: { screen: CreateList },
-},
-{
-  mode: 'modal',
-});
-
-
-ExploreTab.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-
-  return {
-    tabBarVisible,
-  };
-};
-
 const IssuesTab = createStackNavigator({
   TypesContainer: {
     screen: SubmitIssueContainer,
     navigationOptions: {
       title: 'Submit Issue'
-    },
+    }
   },
   SelectType: { screen: SelectType },
   SelectIssue: { screen: SelectIssue },
   SelectPrice: { screen: SelectPrice },
   AdditionalDetails: { screen: AdditionalDetails },
-  Success: {screen: Success},
-  Loading: { screen: Loading}
+  Success: { screen: Success },
+  Loading: { screen: Loading }
 });
 
 const TechnicianTab = createStackNavigator({
@@ -77,65 +45,50 @@ const TechnicianTab = createStackNavigator({
     screen: problemlist,
     navigationOptions: {
       title: 'Fixit Trips'
-    },
+    }
   },
   MapRedirect: { screen: IssueList }
-})
+});
 
 const CustomTabBarIcon = (name, size) => {
   const icon = ({ tintColor }) => (
-    <Icon
-      name={name}
-      size={size}
-      color={tintColor}
-    />
+    <Icon name={name} size={size} color={tintColor} />
   );
 
   icon.propTypes = {
-    tintColor: PropTypes.string.isRequired,
+    tintColor: PropTypes.string.isRequired
   };
 
   return icon;
 };
 
-const LoggedInTabNavigator = createBottomTabNavigator({
-  Issues: {
-    screen: IssuesTab,
-    navigationOptions: {
-      tabBarLabel: 'NEW ISSUE',
-      tabBarIcon: CustomTabBarIcon('ios-ionic', 21),
+const LoggedInTabNavigator = createBottomTabNavigator(
+  {
+    Issues: {
+      screen: IssuesTab,
+      navigationOptions: {
+        tabBarLabel: 'NEW ISSUE',
+        tabBarIcon: CustomTabBarIcon('ios-ionic', 21)
+      }
     },
+    Technician: {
+      screen: TechnicianTab,
+      navigationOptions: {
+        tabBarLabel: 'TECHNICIAN',
+        tabBarIcon: CustomTabBarIcon('ios-archive-outline', 25)
+      }
+    }
   },
-  Explore: {
-    screen: ExploreTab,
-    navigationOptions: {
-      tabBarLabel: 'HISTORY',
-      tabBarIcon: CustomTabBarIcon('ios-search', 22),
+  {
+    tabBarOptions: {
+      labelStyle: {
+        fontWeight: '600',
+        marginBottom: 5
+      },
+      activeTintColor: colors.primary
     },
-  },
-  Inbox: {
-    screen: TechnicianTab,
-    navigationOptions: {
-      tabBarLabel: 'TECHNICIAN',
-      tabBarIcon: CustomTabBarIcon('ios-archive-outline', 25),
-    },
-  },
-  Profile: {
-    screen: ProfileContainer,
-    navigationOptions: {
-      tabBarLabel: 'PROFILE',
-      tabBarIcon: CustomTabBarIcon('ios-contact-outline', 22),
-    },
-  },
-}, {
-  tabBarOptions: {
-    labelStyle: {
-      fontWeight: '600',
-      marginBottom: 5,
-    },
-    activeTintColor: colors.primary,
-  },
-  tabBarPosition: 'bottom',
-});
+    tabBarPosition: 'bottom'
+  }
+);
 
 export default LoggedInTabNavigator;

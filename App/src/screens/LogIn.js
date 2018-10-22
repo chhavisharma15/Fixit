@@ -47,10 +47,10 @@ class LogIn extends Component {
     super(props);
     this.state = {
       formValid: true,
-      validEmail: true,
-      emailAddress: 'c@c.com',
-      password: '12345',
-      validPassword: true,
+      validEmail: false,
+      emailAddress: '',
+      password: '',
+      validPassword: false,
       loadingVisible: false,
     };
 
